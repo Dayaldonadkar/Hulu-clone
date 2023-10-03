@@ -8,11 +8,9 @@ const Results = ({ selectedOption }) => {
   const [movies, setMovies] = useState([]);
   useEffect(() => {
     async function fetchData() {
-      const Requests = await axios.get(
-        selectedOption
-        // `https://api.themoviedb.org/3/${request.fetchTrending}`
-      );
+      const Requests = await axios.get(selectedOption);
       setMovies(Requests.data?.results);
+      return Requests;
     }
 
     fetchData();
@@ -23,7 +21,7 @@ const Results = ({ selectedOption }) => {
       {movies.map((movie) => {
         return (
           <div>
-            <VideoCard movie={movie} />
+            <VideoCard key={movie.id} movie={movie} />
           </div>
         );
       })}

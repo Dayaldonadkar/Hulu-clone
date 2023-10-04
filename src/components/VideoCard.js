@@ -5,6 +5,7 @@ const VideoCard = ({ movie }) => {
   return (
     <div>
       <img
+        className="h-72 w-full transistion duration-100 transform hover:scale-105"
         src={`${base_url}${movie.backdrop_path || movie.poster_path}`}
         alt=""
       />

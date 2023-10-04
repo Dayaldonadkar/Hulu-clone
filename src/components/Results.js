@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import VideoCard from "./VideoCard";
 import { useEffect } from "react";
-import request from "../request";
 import axios from "axios";
 
 const Results = ({ selectedOption }) => {
@@ -18,7 +17,7 @@ const Results = ({ selectedOption }) => {
 
   return (
     <div>
-      {movies.map((movie) => {
+      {movies.map((movie, id) => {
         return (
           <div>
             <VideoCard key={movie.id} movie={movie} />

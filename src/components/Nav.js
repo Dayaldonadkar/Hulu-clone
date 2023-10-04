@@ -6,8 +6,9 @@ const baseUrl = `https://api.themoviedb.org/3`;
 const Nav = ({ setSelectedOption }) => {
   return (
     <nav>
-      <div>
+      <div className="flex px-10 sm:px-20 text-2xl whitespace-nowrap space-x-10 sm:space-x-20 overflow-x-scroll scrollbar-hide last:pr-24">
         <h2
+          className="cursor-pointer transition duration-100 transform hover:scale-125  hover:text-white active:text-red-500"
           onClick={() =>
             setSelectedOption(
               `https://api.themoviedb.org/3/trending/all/week?api_key=166b3b87d35b5238f944c71f3d835364&language=en-US`
@@ -17,6 +18,7 @@ const Nav = ({ setSelectedOption }) => {
           Trending
         </h2>
         <h2
+          className="cursor-pointer"
           onClick={() =>
             setSelectedOption(
               `https://api.themoviedb.org/3//movie/top_rated?api_key=166b3b87d35b5238f944c71f3d835364&with_genres=878`
@@ -26,6 +28,7 @@ const Nav = ({ setSelectedOption }) => {
           Top Rated
         </h2>
         <h2
+          className="cursor-pointer"
           onClick={() =>
             setSelectedOption(
               `https://api.themoviedb.org/3//movie/top_rated?api_key=166b3b87d35b5238f944c71f3d835364&with_genres=28`
@@ -35,6 +38,7 @@ const Nav = ({ setSelectedOption }) => {
           Action
         </h2>
         <h2
+          className="cursor-pointer"
           onClick={() =>
             setSelectedOption(
               `https://api.themoviedb.org/3/movie/top_rated?api_key=166b3b87d35b5238f944c71f3d835364&with_genres=27`
@@ -55,6 +59,7 @@ const Nav = ({ setSelectedOption }) => {
         </h2>
 
         <h2
+          className="cursor-pointer"
           onClick={() =>
             setSelectedOption(
               `${baseUrl}/discover/movie?api_key=166b3b87d35b5238f944c71f3d835364&with_genres=9648`
@@ -65,6 +70,7 @@ const Nav = ({ setSelectedOption }) => {
         </h2>
 
         <h2
+          className="cursor-pointer"
           onClick={() =>
             setSelectedOption(
               `${baseUrl}/discover/movie?api_key=166b3b87d35b5238f944c71f3d835364&with_genres=878`
@@ -75,6 +81,7 @@ const Nav = ({ setSelectedOption }) => {
         </h2>
 
         <h2
+          className="cursor-pointer"
           onClick={() =>
             setSelectedOption(
               `${baseUrl}/discover/movie?api_key=166b3b87d35b5238f944c71f3d835364&with_genres=37`
@@ -84,6 +91,7 @@ const Nav = ({ setSelectedOption }) => {
           Western
         </h2>
         <h2
+          className="cursor-pointer"
           onClick={() =>
             setSelectedOption(
               `${baseUrl}/discover/movie?api_key=166b3b87d35b5238f944c71f3d835364&with_genres=16`
@@ -93,6 +101,7 @@ const Nav = ({ setSelectedOption }) => {
           Animation
         </h2>
         <h2
+          className="cursor-pointer"
           onClick={() =>
             setSelectedOption(
               `${baseUrl}/discover/movie?api_key=166b3b87d35b5238f944c71f3d835364&with_genres=10770`
@@ -102,6 +111,8 @@ const Nav = ({ setSelectedOption }) => {
           TV
         </h2>
       </div>
+
+      <div className="absolute top-0 right-0 bg-gradient-to-l from-[#06202A] h-10 w-1/2"></div>
     </nav>
   );
 };

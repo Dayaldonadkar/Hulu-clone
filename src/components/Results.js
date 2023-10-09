@@ -18,8 +18,9 @@ const Results = ({ selectedOption }) => {
       const req = await axios.get(
         `https://api.themoviedb.org/3/search/movie?query=${search}&api_key=166b3b87d35b5238f944c71f3d835364`
       );
-      console.log("req", req);
+      // console.log("req", req);
       setQuery(req.data?.results);
+      console.log((req.data?.results).length, "length");
     }
 
     fetchData();
@@ -28,7 +29,7 @@ const Results = ({ selectedOption }) => {
 
   return (
     <div>
-      <div>
+      <div className="flex justify-center pt-14">
         <form onSubmit={(e) => e.preventDefault()}>
           <input
             type="text"
@@ -37,25 +38,34 @@ const Results = ({ selectedOption }) => {
           />
         </form>
       </div>
-      <div className="px-5 my-10 sm:grid md:grid-cols-2 xl:grid-cols-3">
-        {query.map((movie, id) => {
-          return (
-            <div className="px-5 py-5">
-              <VideoCard key={movie.id} movie={movie} />
-            </div>
-          );
-        })}
-      </div>
 
-      <div className="px-5 my-10 sm:grid md:grid-cols-2 xl:grid-cols-3">
-        {movies.map((movie, id) => {
-          return (
-            <div className="px-5 py-5">
-              <VideoCard key={movie.id} movie={movie} />
-            </div>
-          );
-        })}
-      </div>
+      {query.length > 1 ? (
+        <div className="px-5 my-10 sm:grid md:grid-cols-2 xl:grid-cols-3">
+          {query.map((movie, id) => {
+            return (
+              <div className="px-5 py-5">
+                <VideoCard key={movie.id} movie={movie} />
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        ""
+      )}
+
+      {query.length === 0 && search.length === 0 ? (
+        <div className="px-5 my-10 sm:grid md:grid-cols-2 xl:grid-cols-3">
+          {movies.map((movie, id) => {
+            return (
+              <div className="px-5 py-5">
+                <VideoCard key={movie.id} movie={movie} />
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        "no movies found"
+      )}
     </div>
   );
 };

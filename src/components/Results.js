@@ -5,25 +5,57 @@ import axios from "axios";
 
 const Results = ({ selectedOption }) => {
   const [movies, setMovies] = useState([]);
+  const [search, setSearch] = useState("");
+  const [query, setQuery] = useState([]);
+
   useEffect(() => {
     async function fetchData() {
       const Requests = await axios.get(selectedOption);
       setMovies(Requests.data?.results);
       return Requests;
     }
+    async function fetchQuery() {
+      const req = await axios.get(
+        `https://api.themoviedb.org/3/search/movie?query=${search}&api_key=166b3b87d35b5238f944c71f3d835364`
+      );
+      console.log("req", req);
+      setQuery(req.data?.results);
+    }
 
     fetchData();
-  }, [selectedOption]);
+    fetchQuery();
+  }, [selectedOption, search]);
 
   return (
-    <div className="px-5 my-10 sm:grid md:grid-cols-2 xl:grid-cols-3 3xl:flex flex-wrap justify-center 3xl:mx-20">
-      {movies.map((movie, id) => {
-        return (
-          <div className="px-5 py-5 ">
-            <VideoCard key={movie.id} movie={movie} />
-          </div>
-        );
-      })}
+    <div>
+      <div>
+        <form onSubmit={(e) => e.preventDefault()}>
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </form>
+      </div>
+      <div className="px-5 my-10 sm:grid md:grid-cols-2 xl:grid-cols-3">
+        {query.map((movie, id) => {
+          return (
+            <div className="px-5 py-5">
+              <VideoCard key={movie.id} movie={movie} />
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="px-5 my-10 sm:grid md:grid-cols-2 xl:grid-cols-3">
+        {movies.map((movie, id) => {
+          return (
+            <div className="px-5 py-5">
+              <VideoCard key={movie.id} movie={movie} />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

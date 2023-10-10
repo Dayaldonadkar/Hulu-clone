@@ -39,9 +39,10 @@ const Results = ({ selectedOption }) => {
         </form>
       </div>
 
-      {query.length > 1 ? (
+      {/* {query.length > 1 ? (
         <div className="px-5 my-10 sm:grid md:grid-cols-2 xl:grid-cols-3">
-          {query.map((movie, id) => {
+          {query.map((movie) => {
+            const { id } = movie;
             return (
               <div className="px-5 py-5">
                 <VideoCard key={movie.id} movie={movie} />
@@ -51,7 +52,7 @@ const Results = ({ selectedOption }) => {
         </div>
       ) : (
         ""
-      )}
+      )} */}
 
       {query.length === 0 && search.length === 0 ? (
         <div className="px-5 my-10 sm:grid md:grid-cols-2 xl:grid-cols-3">
@@ -64,7 +65,22 @@ const Results = ({ selectedOption }) => {
           })}
         </div>
       ) : (
+        ""
+      )}
+
+      {query.length === 0 && search.length > 0 ? (
         "no movies found"
+      ) : (
+        <div className="px-5 my-10 sm:grid md:grid-cols-2 xl:grid-cols-3">
+          {query.map((movie) => {
+            const { id } = movie;
+            return (
+              <div className="px-5 py-5">
+                <VideoCard key={movie.id} movie={movie} />
+              </div>
+            );
+          })}
+        </div>
       )}
     </div>
   );

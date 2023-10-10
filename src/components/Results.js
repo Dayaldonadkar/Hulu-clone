@@ -12,6 +12,7 @@ const Results = ({ selectedOption }) => {
     async function fetchData() {
       const Requests = await axios.get(selectedOption);
       setMovies(Requests.data?.results);
+      console.log(Requests.data?.results);
       return Requests;
     }
     async function fetchQuery() {

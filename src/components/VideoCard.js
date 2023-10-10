@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 const base_url = "https://image.tmdb.org/t/p/original";
 
 const VideoCard = ({ movie }) => {
+  const [details, setDetails] = useState(false);
+
   const getDetails = (id) => {
     console.log(id, "id");
+    setDetails(true);
   };
 
   return (

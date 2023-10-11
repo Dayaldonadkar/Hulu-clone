@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import RecommendIcon from "@mui/icons-material/Recommend";
 const base_url = "https://image.tmdb.org/t/p/original";
 
 const VideoCard = ({ movie }) => {
@@ -17,17 +18,29 @@ const VideoCard = ({ movie }) => {
   };
 
   return (
-    <div>
+    <div className="group cursor-pointer">
       <img
         onClick={() => movieDetails(movie.id)}
         className="h-72 w-full transistion duration-100 transform hover:scale-105"
         src={`${base_url}${movie.backdrop_path || movie.poster_path}`}
         alt=""
       />
+      <div className="py-2">
+        <p className="truncate">{movie.overview}</p>
+        <h2 className="text-2xl mt-1 transistion-all duration-100 ease-in-out group-hover:font-bold">
+          {movie.title || movie.original_name}
+        </h2>
 
-      <p>{movie.overview}</p>
-      <h2>{movie.title || movie.original_name}</h2>
-      <p>{movie.vote_count}</p>
+        <div className="flex items-center space-x-7 opacity-0 group-hover:opacity-100">
+          <p>{movie.release_date || movie.first_air_date}</p>
+          <p className="flex items-center space-x-1 ">
+            <span>
+              <RecommendIcon />
+            </span>
+            <span>{movie.vote_count}</span>
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
